@@ -6,8 +6,8 @@
 //
 
 import CoreData
-import OSLog
 import CoreLocation
+import OSLog
 
 struct PersistenceController {
   static let shared = PersistenceController()
@@ -19,7 +19,7 @@ struct PersistenceController {
     let longitude = -122.0267635
     let latitude = 37.3842192
     let delta = 0.01
-    for i in 0..<10 {
+    for i in 0 ..< 10 {
       let location = Location(context: viewContext)
       location.latitude = latitude + delta * Double(i)
       location.longitude = longitude + delta * Double(i)
@@ -43,7 +43,7 @@ struct PersistenceController {
     if inMemory {
       container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
     }
-    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+    container.loadPersistentStores(completionHandler: { _, error in
       if let error = error as NSError? {
         // Replace this implementation with code to handle the error appropriately.
         // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -89,8 +89,8 @@ struct PersistenceController {
     )
     fetchRequest.predicate = NSCompoundPredicate(
       andPredicateWithSubpredicates: [
-        NSPredicate.init(format: "timestamp >= %@", start as NSDate),
-        NSPredicate.init(format: "timestamp < %@", end as NSDate),
+        NSPredicate(format: "timestamp >= %@", start as NSDate),
+        NSPredicate(format: "timestamp < %@", end as NSDate),
       ])
     do {
       return try ctx.fetch(fetchRequest)
@@ -118,7 +118,8 @@ struct PersistenceController {
     do {
       if let result = try ctx.fetch(request) as? [[String: Date]],
          let dict = result.first,
-         let minDate = dict[outputKey] {
+         let minDate = dict[outputKey]
+      {
         Logger.background.debug("Find \(forFunction) timestamp \(minDate)")
         return minDate
       }
@@ -131,7 +132,7 @@ struct PersistenceController {
   }
 
   func queryMinTimestamp() -> Date {
-    return query(forFunction: "min:") ?? Date.init(timeIntervalSince1970: 0)
+    return query(forFunction: "min:") ?? Date(timeIntervalSince1970: 0)
   }
 
   func queryMaxTimestamp() -> Date? {

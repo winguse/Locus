@@ -8,21 +8,20 @@
 import SwiftUI
 
 class LocusStore: ObservableObject {
-  
   private let pc: PersistenceController
-  
+
   init(pc: PersistenceController = PersistenceController.shared) {
     self.pc = pc
     minTimestatmp = pc.queryMinTimestamp()
     refreshMaxTimestamp()
   }
-  
-  @Published var minTimestatmp: Date = Date.init(timeIntervalSince1970: 0)
+
+  @Published var minTimestatmp: Date = .init(timeIntervalSince1970: 0)
   @Published var maxTimestatmp: Date? = nil
   @Published var locations = [Location]()
 
   func refreshMaxTimestamp() {
-    maxTimestatmp = self.pc.queryMaxTimestamp()
+    maxTimestatmp = pc.queryMaxTimestamp()
   }
 
   func fetchLocations(start: Date, end: Date) {
@@ -32,4 +31,3 @@ class LocusStore: ObservableObject {
     }
   }
 }
-

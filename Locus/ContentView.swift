@@ -5,32 +5,32 @@
 //  Created by Yingyu Cheng on 10/15/22.
 //
 
-import SwiftUI
 import OSLog
+import SwiftUI
 
 struct ContentView: View {
   private let basicSize: CGFloat = 100
   private var applyCNOffsetAdjustment: Bool = false
-  
+
   enum DisplayMode: String {
     case daily = "Daily"
     case weekly = "Weekly"
     case monthly = "Monthly"
   }
-  
+
   @EnvironmentObject var store: LocusStore
-  
+
   @State private var previousDisabled = false
   @State private var nextDisabled = false
   @State private var showPopover = false
   @State private var displayMode: DisplayMode = .daily
-  @State private var selectedStartTime: Date = Date()
-  
+  @State private var selectedStartTime: Date = .init()
+
   init() {
     let defaults = UserDefaults.standard
     applyCNOffsetAdjustment = defaults.bool(forKey: "apply-cn-offset-adjustment")
   }
-  
+
   var body: some View {
     ZStack {
       MapView(
@@ -85,7 +85,7 @@ struct ContentView: View {
           Text(DisplayMode.monthly.rawValue).tag(DisplayMode.monthly)
         }
         .pickerStyle(SegmentedPickerStyle())
-        DatePicker("Time", selection: $selectedStartTime, in: store.minTimestatmp...Date(), displayedComponents: .date)
+        DatePicker("Time", selection: $selectedStartTime, in: store.minTimestatmp ... Date(), displayedComponents: .date)
           .datePickerStyle(GraphicalDatePickerStyle())
         HStack {
           Spacer()
@@ -115,15 +115,14 @@ struct ContentView: View {
         .foregroundColor(Color.white)
         .background(Color.blue)
         .cornerRadius(basicSize * 0.1)
-        
       }
       .padding(.all, 0.2 * basicSize)
       .padding(.bottom, 0.3 * basicSize)
-    } .onAppear(perform: {
+    }.onAppear(perform: {
       update(direction: 0)
     })
   }
-  
+
   private func renderDateDisplayString() -> String {
     switch displayMode {
       case .daily:
@@ -142,7 +141,7 @@ struct ContentView: View {
         return "\(dateFmt.string(from: selectedStartTime))"
     }
   }
-  
+
   private func floor(_ from: Date) -> Date {
     let calendar = Calendar.current
     switch displayMode {
@@ -154,18 +153,18 @@ struct ContentView: View {
         return calendar.date(from: calendar.dateComponents([.month, .year], from: from))!
     }
   }
-  
+
   private func nextTime(_ direction: Int, _ to: Date) -> Date {
-    if (displayMode == .monthly) {
+    if displayMode == .monthly {
       return Calendar.current.date(byAdding: .month, value: direction, to: to)!
     }
     return Calendar.current.date(byAdding: .day, value: direction * (displayMode == .weekly ? 7 : 1), to: to)!
   }
-  
+
   private func update(direction: Int) {
     let minStartTime = floor(store.minTimestatmp)
     selectedStartTime = nextTime(direction, floor(selectedStartTime))
-    if (selectedStartTime < minStartTime) {
+    if selectedStartTime < minStartTime {
       selectedStartTime = minStartTime
     }
     let selectedEndTime = nextTime(1, selectedStartTime)
@@ -174,13 +173,13 @@ struct ContentView: View {
     Logger.ui.debug("query \(displayMode.rawValue) \(selectedStartTime) ~ \(selectedEndTime)")
     store.fetchLocations(start: selectedStartTime, end: selectedEndTime)
   }
-  
+
   private func togglePopover() {
-    self.showPopover.toggle()
-    if (!self.showPopover) {
+    showPopover.toggle()
+    if !showPopover {
       update(direction: 0)
     } else {
-      self.store.refreshMaxTimestamp()
+      store.refreshMaxTimestamp()
     }
   }
 }
