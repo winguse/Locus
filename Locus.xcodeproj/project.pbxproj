@@ -11,11 +11,17 @@
 		441E1E8428FBAFAB00B0C209 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1E8328FBAFAB00B0C209 /* ContentView.swift */; };
 		441E1E8628FBAFAC00B0C209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441E1E8528FBAFAC00B0C209 /* Assets.xcassets */; };
 		441E1E8928FBAFAC00B0C209 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441E1E8828FBAFAC00B0C209 /* Preview Assets.xcassets */; };
-		441E1E8B28FBAFAC00B0C209 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1E8A28FBAFAC00B0C209 /* Persistence.swift */; };
+		441E1E8B28FBAFAC00B0C209 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1E8A28FBAFAC00B0C209 /* PersistenceController.swift */; };
 		441E1E8E28FBAFAC00B0C209 /* Locus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441E1E8C28FBAFAC00B0C209 /* Locus.xcdatamodeld */; };
 		441E1E9928FBAFAD00B0C209 /* LocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1E9828FBAFAD00B0C209 /* LocusTests.swift */; };
 		441E1EA328FBAFAD00B0C209 /* LocusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EA228FBAFAD00B0C209 /* LocusUITests.swift */; };
 		441E1EA528FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EA428FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift */; };
+		441E1EB228FBB26100B0C209 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB128FBB26100B0C209 /* Logger.swift */; };
+		441E1EB428FBB62100B0C209 /* LifePathStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB328FBB62100B0C209 /* LifePathStore.swift */; };
+		441E1EB628FBB63700B0C209 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB528FBB63700B0C209 /* Utils.swift */; };
+		441E1EB828FBB67300B0C209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB728FBB67300B0C209 /* AppDelegate.swift */; };
+		441E1EBA28FBB69000B0C209 /* ImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB928FBB69000B0C209 /* ImportExport.swift */; };
+		441E1EBC28FBB6BA00B0C209 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EBB28FBB6BA00B0C209 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +47,7 @@
 		441E1E8328FBAFAB00B0C209 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		441E1E8528FBAFAC00B0C209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		441E1E8828FBAFAC00B0C209 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		441E1E8A28FBAFAC00B0C209 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		441E1E8A28FBAFAC00B0C209 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		441E1E8D28FBAFAC00B0C209 /* Locus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locus.xcdatamodel; sourceTree = "<group>"; };
 		441E1E8F28FBAFAC00B0C209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441E1E9428FBAFAD00B0C209 /* LocusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +55,12 @@
 		441E1E9E28FBAFAD00B0C209 /* LocusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		441E1EA228FBAFAD00B0C209 /* LocusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusUITests.swift; sourceTree = "<group>"; };
 		441E1EA428FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		441E1EB128FBB26100B0C209 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		441E1EB328FBB62100B0C209 /* LifePathStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifePathStore.swift; sourceTree = "<group>"; };
+		441E1EB528FBB63700B0C209 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		441E1EB728FBB67300B0C209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		441E1EB928FBB69000B0C209 /* ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExport.swift; sourceTree = "<group>"; };
+		441E1EBB28FBB6BA00B0C209 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +114,16 @@
 				441E1E8128FBAFAB00B0C209 /* LocusApp.swift */,
 				441E1E8328FBAFAB00B0C209 /* ContentView.swift */,
 				441E1E8528FBAFAC00B0C209 /* Assets.xcassets */,
-				441E1E8A28FBAFAC00B0C209 /* Persistence.swift */,
+				441E1E8A28FBAFAC00B0C209 /* PersistenceController.swift */,
 				441E1E8F28FBAFAC00B0C209 /* Info.plist */,
 				441E1E8C28FBAFAC00B0C209 /* Locus.xcdatamodeld */,
 				441E1E8728FBAFAC00B0C209 /* Preview Content */,
+				441E1EB128FBB26100B0C209 /* Logger.swift */,
+				441E1EB328FBB62100B0C209 /* LifePathStore.swift */,
+				441E1EB528FBB63700B0C209 /* Utils.swift */,
+				441E1EB728FBB67300B0C209 /* AppDelegate.swift */,
+				441E1EB928FBB69000B0C209 /* ImportExport.swift */,
+				441E1EBB28FBB6BA00B0C209 /* MapView.swift */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -265,8 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441E1EB828FBB67300B0C209 /* AppDelegate.swift in Sources */,
+				441E1EB228FBB26100B0C209 /* Logger.swift in Sources */,
 				441E1E8E28FBAFAC00B0C209 /* Locus.xcdatamodeld in Sources */,
-				441E1E8B28FBAFAC00B0C209 /* Persistence.swift in Sources */,
+				441E1EBA28FBB69000B0C209 /* ImportExport.swift in Sources */,
+				441E1EB428FBB62100B0C209 /* LifePathStore.swift in Sources */,
+				441E1EB628FBB63700B0C209 /* Utils.swift in Sources */,
+				441E1E8B28FBAFAC00B0C209 /* PersistenceController.swift in Sources */,
+				441E1EBC28FBB6BA00B0C209 /* MapView.swift in Sources */,
 				441E1E8428FBAFAB00B0C209 /* ContentView.swift in Sources */,
 				441E1E8228FBAFAB00B0C209 /* LocusApp.swift in Sources */,
 			);
@@ -430,11 +454,15 @@
 				DEVELOPMENT_TEAM = F9Y5E96RQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Locus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Locus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,6 +470,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.winguse.Locus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,11 +490,15 @@
 				DEVELOPMENT_TEAM = F9Y5E96RQL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Locus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Locus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,6 +506,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.winguse.Locus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
