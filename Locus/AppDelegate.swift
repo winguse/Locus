@@ -106,6 +106,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, CLLocationManagerDelegate, U
   }
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+    Logger.background.info("start app")
     Utils.hook()
     startLocationService()
     let center = UNUserNotificationCenter.current()

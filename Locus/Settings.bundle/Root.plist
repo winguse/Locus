@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Apply CN offset adjustment</string>
+			<key>Key</key>
+			<string>apply-cn-offset-adjustment</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>50</string>
+				<string>20</string>
+				<string>10</string>
+				<string>best</string>
+			</array>
+			<key>Title</key>
+			<string>Accuracy</string>
+			<key>Titles</key>
+			<array>
+				<string>50 m</string>
+				<string>20 m</string>
+				<string>10 m</string>
+				<string>Best</string>
+			</array>
+			<key>Key</key>
+			<string>accuracy</string>
+			<key>DefaultValue</key>
+			<string>20</string>
+		</dict>
+	</array>
+</dict>
+</plist>

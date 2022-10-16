@@ -10,25 +10,34 @@ import OSLog
 
 struct ContentView: View {
   private let basicSize: CGFloat = 100
-
+  private var applyCNOffsetAdjustment: Bool = false
+  
   enum DisplayMode: String {
     case daily = "Daily"
     case weekly = "Weekly"
     case monthly = "Monthly"
   }
-
-  @EnvironmentObject var store: LifePathStore
-
+  
+  @EnvironmentObject var store: LocusStore
+  
   @State private var previousDisabled = false
   @State private var nextDisabled = false
   @State private var showPopover = false
   @State private var displayMode: DisplayMode = .daily
   @State private var selectedStartTime: Date = Date()
-
+  
+  init() {
+    let defaults = UserDefaults.standard
+    applyCNOffsetAdjustment = defaults.bool(forKey: "apply-cn-offset-adjustment")
+  }
+  
   var body: some View {
     ZStack {
-      MapView(locations: $store.locations)
-        .edgesIgnoringSafeArea(.all)
+      MapView(
+        locations: $store.locations,
+        applyCNOffsetAdjustment: applyCNOffsetAdjustment
+      )
+      .edgesIgnoringSafeArea(.all)
       VStack {
         Spacer().frame(maxWidth: .infinity)
         ZStack {
@@ -58,7 +67,6 @@ struct ContentView: View {
               Text(renderDateDisplayString())
                 .font(.footnote)
                 .fontWeight(.thin)
-
             }
             .frame(width: basicSize, height: basicSize)
             .foregroundColor(Color.white)
@@ -96,6 +104,9 @@ struct ContentView: View {
           .cornerRadius(basicSize * 0.1)
           Spacer()
         }
+        Text("last location from now: \(Utils.formatInterval(internval: store.maxTimestatmp?.timeIntervalSinceNow))")
+        Text("last hook name: \(Utils.lastHookName)")
+        Text("last hook time: \(Utils.lastHookCallTime)")
         Spacer().frame(maxWidth: .infinity)
         Button(action: togglePopover, label: {
           Text("OK")
@@ -104,7 +115,7 @@ struct ContentView: View {
         .foregroundColor(Color.white)
         .background(Color.blue)
         .cornerRadius(basicSize * 0.1)
-
+        
       }
       .padding(.all, 0.2 * basicSize)
       .padding(.bottom, 0.3 * basicSize)
@@ -112,7 +123,7 @@ struct ContentView: View {
       update(direction: 0)
     })
   }
-
+  
   private func renderDateDisplayString() -> String {
     switch displayMode {
       case .daily:
@@ -131,7 +142,7 @@ struct ContentView: View {
         return "\(dateFmt.string(from: selectedStartTime))"
     }
   }
-
+  
   private func floor(_ from: Date) -> Date {
     let calendar = Calendar.current
     switch displayMode {
@@ -143,14 +154,14 @@ struct ContentView: View {
         return calendar.date(from: calendar.dateComponents([.month, .year], from: from))!
     }
   }
-
+  
   private func nextTime(_ direction: Int, _ to: Date) -> Date {
     if (displayMode == .monthly) {
       return Calendar.current.date(byAdding: .month, value: direction, to: to)!
     }
     return Calendar.current.date(byAdding: .day, value: direction * (displayMode == .weekly ? 7 : 1), to: to)!
   }
-
+  
   private func update(direction: Int) {
     let minStartTime = floor(store.minTimestatmp)
     selectedStartTime = nextTime(direction, floor(selectedStartTime))
@@ -163,11 +174,13 @@ struct ContentView: View {
     Logger.ui.debug("query \(displayMode.rawValue) \(selectedStartTime) ~ \(selectedEndTime)")
     store.fetchLocations(start: selectedStartTime, end: selectedEndTime)
   }
-
+  
   private func togglePopover() {
     self.showPopover.toggle()
     if (!self.showPopover) {
       update(direction: 0)
+    } else {
+      self.store.refreshMaxTimestamp()
     }
   }
 }
@@ -176,7 +189,7 @@ struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       ContentView()
-        .environmentObject(LifePathStore(pc: PersistenceController.preview))
+        .environmentObject(LocusStore(pc: PersistenceController.preview))
     }
   }
 }

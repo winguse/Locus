@@ -73,18 +73,56 @@ class Utils {
     }
   }
 
+  static private let lockStateChange = "com.apple.springboard.lockstate"
+  static private let lockStateComplete = "com.apple.springboard.lockcomplete"
+  static private var locked = false
+
+  static var lastHookCallTime: Date = Date()
+  static var lastHookName: String = ""
+
+  static private func lookCallback(name: String?) {
+    if (name == nil) {
+      return
+    }
+    Utils.lastHookName = name!
+    Utils.lastHookCallTime = Date()
+    if (name! == lockStateComplete) {
+      locked = true
+      return
+    } else if (name! == lockStateChange) {
+      if (locked) {
+        locked = false
+      } else {
+        return
+      }
+    }
+//    UIDevice.current.isBatteryMonitoringEnabled = true
+//    UIDevice.current.batteryState = .charging
+    Utils.sendNotification(title: "is locked?", body: "\(locked)")
+  }
+
   static func hook() {
+    let hookNames = [lockStateChange, lockStateComplete]
+    for hookName in hookNames {
+      // https://stackoverflow.com/questions/14191980/detect-screen-on-off-from-ios-service
+      CFNotificationCenterAddObserver(
+        CFNotificationCenterGetDarwinNotifyCenter(), //center
+        nil, // observer
+        { (center: CFNotificationCenter?, observer: UnsafeMutableRawPointer?, name: CFNotificationName?, object: UnsafeRawPointer?, userInfo: CFDictionary?) in
+          Utils.lookCallback(name: name?.rawValue as String?)
+        }, // callback
+        hookName as NSString, // event name
+        nil, // object
+        .deliverImmediately)
+    }
+  }
 
-    // https://stackoverflow.com/questions/14191980/detect-screen-on-off-from-ios-service
-    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), //center
-                                    nil, // observer
-                                    { (center: CFNotificationCenter?, observer: UnsafeMutableRawPointer?, name: CFNotificationName?, object: UnsafeRawPointer?, userInfo: CFDictionary?) in
-      Utils.sendNotification(title: "hook", body: "\(name) \(Date()) \(userInfo) \(object)")
-    }, // callback
-                                    "com.apple.springboard.lockstate" as NSString, // event name
-                                    nil, // object
-                                    .deliverImmediately)
-
+  private static let formatter = DateComponentsFormatter()
+  static func formatInterval(internval: TimeInterval?) -> String {
+    if (internval == nil) {
+      return ""
+    }
+    return formatter.string(from: internval!) ?? ""
   }
 }
 

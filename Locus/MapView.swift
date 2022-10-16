@@ -13,6 +13,7 @@ import OSLog
 struct MapView: UIViewRepresentable {
   
   @Binding var locations: [Location]
+  var applyCNOffsetAdjustment: Bool
   
   func updateUIView(_ uiView: MKMapView, context: Context) {
     for overlay in uiView.overlays {
@@ -20,7 +21,8 @@ struct MapView: UIViewRepresentable {
     }
     if (locations.count > 1) {
       let line = MKPolyline.init(coordinates: locations.map {
-        Utils.transformFromWGSToGCJ(wgsLoc: CLLocationCoordinate2D.init(latitude: $0.latitude, longitude: $0.longitude))
+        let co = CLLocationCoordinate2D.init(latitude: $0.latitude, longitude: $0.longitude)
+        return applyCNOffsetAdjustment ? Utils.transformFromWGSToGCJ(wgsLoc: co) : co
       }, count: locations.count)
       
       Logger.ui.info("draw \(locations.count) points")
@@ -64,7 +66,7 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
   
   static var previews: some View {
-    MapView(locations: .constant([]))
+    MapView(locations: .constant([]), applyCNOffsetAdjustment: false)
   }
 }
 

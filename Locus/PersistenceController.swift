@@ -101,32 +101,40 @@ struct PersistenceController {
     return [Location]()
   }
 
-  func queryMinTimestamp() -> Date {
+  func query(forFunction: String) -> Date? {
     let ctx = container.viewContext
     let request = NSFetchRequest<NSFetchRequestResult>(
       entityName: "Location"
     )
     request.resultType = NSFetchRequestResultType.dictionaryResultType
     let keypathExpression = NSExpression(forKeyPath: "timestamp")
-    let maxExpression = NSExpression(forFunction: "min:", arguments: [keypathExpression])
-    let key = "minTimestamp"
+    let expression = NSExpression(forFunction: forFunction, arguments: [keypathExpression])
+    let outputKey = "result"
     let expressionDescription = NSExpressionDescription()
-    expressionDescription.name = key
-    expressionDescription.expression = maxExpression
+    expressionDescription.name = outputKey
+    expressionDescription.expression = expression
     expressionDescription.expressionResultType = .dateAttributeType
     request.propertiesToFetch = [expressionDescription]
     do {
       if let result = try ctx.fetch(request) as? [[String: Date]],
          let dict = result.first,
-         let minDate = dict[key] {
-        Logger.background.debug("Find min timestamp \(minDate)")
+         let minDate = dict[outputKey] {
+        Logger.background.debug("Find \(forFunction) timestamp \(minDate)")
         return minDate
       }
-      Logger.background.warning("Cannot find min timestamp")
+      Logger.background.warning("Cannot find \(forFunction) timestamp")
     } catch {
       let nsError = error as NSError
-      Logger.background.critical("Error found when trying to fetch min timestamp \(nsError), \(nsError.userInfo)")
+      Logger.background.critical("Error found when trying to fetch \(forFunction) timestamp \(nsError), \(nsError.userInfo)")
     }
-    return Date.init(timeIntervalSince1970: 0)
+    return nil
+  }
+
+  func queryMinTimestamp() -> Date {
+    return query(forFunction: "min:") ?? Date.init(timeIntervalSince1970: 0)
+  }
+
+  func queryMaxTimestamp() -> Date? {
+    return query(forFunction: "max:")
   }
 }

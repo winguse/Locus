@@ -17,11 +17,12 @@
 		441E1EA328FBAFAD00B0C209 /* LocusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EA228FBAFAD00B0C209 /* LocusUITests.swift */; };
 		441E1EA528FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EA428FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift */; };
 		441E1EB228FBB26100B0C209 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB128FBB26100B0C209 /* Logger.swift */; };
-		441E1EB428FBB62100B0C209 /* LifePathStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB328FBB62100B0C209 /* LifePathStore.swift */; };
+		441E1EB428FBB62100B0C209 /* LocusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB328FBB62100B0C209 /* LocusStore.swift */; };
 		441E1EB628FBB63700B0C209 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB528FBB63700B0C209 /* Utils.swift */; };
 		441E1EB828FBB67300B0C209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB728FBB67300B0C209 /* AppDelegate.swift */; };
 		441E1EBA28FBB69000B0C209 /* ImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EB928FBB69000B0C209 /* ImportExport.swift */; };
 		441E1EBC28FBB6BA00B0C209 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E1EBB28FBB6BA00B0C209 /* MapView.swift */; };
+		441E1EFA28FBC43F00B0C209 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 441E1EF928FBC43F00B0C209 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +57,12 @@
 		441E1EA228FBAFAD00B0C209 /* LocusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusUITests.swift; sourceTree = "<group>"; };
 		441E1EA428FBAFAD00B0C209 /* LocusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		441E1EB128FBB26100B0C209 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		441E1EB328FBB62100B0C209 /* LifePathStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifePathStore.swift; sourceTree = "<group>"; };
+		441E1EB328FBB62100B0C209 /* LocusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusStore.swift; sourceTree = "<group>"; };
 		441E1EB528FBB63700B0C209 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		441E1EB728FBB67300B0C209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441E1EB928FBB69000B0C209 /* ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExport.swift; sourceTree = "<group>"; };
 		441E1EBB28FBB6BA00B0C209 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		441E1EF928FBC43F00B0C209 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +121,12 @@
 				441E1E8C28FBAFAC00B0C209 /* Locus.xcdatamodeld */,
 				441E1E8728FBAFAC00B0C209 /* Preview Content */,
 				441E1EB128FBB26100B0C209 /* Logger.swift */,
-				441E1EB328FBB62100B0C209 /* LifePathStore.swift */,
+				441E1EB328FBB62100B0C209 /* LocusStore.swift */,
 				441E1EB528FBB63700B0C209 /* Utils.swift */,
 				441E1EB728FBB67300B0C209 /* AppDelegate.swift */,
 				441E1EB928FBB69000B0C209 /* ImportExport.swift */,
 				441E1EBB28FBB6BA00B0C209 /* MapView.swift */,
+				441E1EF928FBC43F00B0C209 /* Settings.bundle */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				441E1E8928FBAFAC00B0C209 /* Preview Assets.xcassets in Resources */,
+				441E1EFA28FBC43F00B0C209 /* Settings.bundle in Resources */,
 				441E1E8628FBAFAC00B0C209 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +291,7 @@
 				441E1EB228FBB26100B0C209 /* Logger.swift in Sources */,
 				441E1E8E28FBAFAC00B0C209 /* Locus.xcdatamodeld in Sources */,
 				441E1EBA28FBB69000B0C209 /* ImportExport.swift in Sources */,
-				441E1EB428FBB62100B0C209 /* LifePathStore.swift in Sources */,
+				441E1EB428FBB62100B0C209 /* LocusStore.swift in Sources */,
 				441E1EB628FBB63700B0C209 /* Utils.swift in Sources */,
 				441E1E8B28FBAFAC00B0C209 /* PersistenceController.swift in Sources */,
 				441E1EBC28FBB6BA00B0C209 /* MapView.swift in Sources */,
